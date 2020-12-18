@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <meta property="og:title" content="{{ 'Uroš Krčadinac → 2020 Mutations' }}">
+    {% set desc = "Interactive project made by Uroš Krčadinac with the help of his students. Belgrade, 2020." %}
+    <meta property="og:description" content="{{ desc }}">
+    {% set main_img_path = "media/projects/2020mutations/img/2020mutations00.jpg" %}
+    <meta property="og:image" content="{{ url_for('static', filename=main_img_path) }}">
+    <meta property="og:image:secure_url" content="{{ url_for('static', filename=main_img_path) }}"/>
+    <meta property="og:url" content="{{ 'https://krcadinac.com/space/neolib' }}">
+
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@krcadinac"/>
+    <meta name="twitter:title" content="{{ 'Uroš Krčadinac → 2020 Mutations' }}"/>
+    <meta name="twitter:description" content="{{ desc }}"/>
+    <meta name="twitter:image" content="{{ url_for('static', filename=main_img_path) }}"/>
+
+    <style>
+
+        {# Cartograph Sans #}
+
+        @font-face {
+            font-family: "CartographSans-Medium";
+            src: url({{ url_for('static', filename='media/fonts/cartograph/CartographSansCF-Medium.eot') }});
+            src: url({{ url_for('static', filename='media/fonts/cartograph/CartographSansCF-Medium.eot?#iefix') }}) format('embedded-opentype'),
+            url({{ url_for('static', filename='media/fonts/cartograph/CartographSansCF-Medium.woff2') }}) format('woff2'),
+            url({{ url_for('static', filename='media/fonts/cartograph/CartographSansCF-Medium.woff') }}) format('woff');
+        }
+
+        @font-face {
+            font-family: "CartographSans-MediumItalic";
+            src: url({{ url_for('static', filename='media/fonts/cartograph/CartographSansCFMediumItalic.eot') }});
+            src: url({{ url_for('static', filename='media/fonts/cartograph/CartographSansCFMediumItalic.eot?#iefix') }}) format('embedded-opentype'),
+            url({{ url_for('static', filename='media/fonts/cartograph/CartographSansCFMediumItalic.woff2') }}) format('woff2'),
+            url({{ url_for('static', filename='media/fonts/cartograph/CartographSansCFMediumItalic.woff') }}) format('woff');
+        }
+
+    </style>
+
+    <link rel="shortcut icon" type="image/png"
+          href="{{ url_for('static', filename='media/favicon/favicon.ico') }}"/>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='space/neolib/neolib.css') }}">
+
+    <script src="{{ url_for('static', filename='js/lib/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/lib/d3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='space/neolib/neolib.js') }}"></script>
+
+    <title>2020 mutacije / mutations</title>
+
+</head>
+<body>
+
+<main>
+
+{#    <div id="nav-icon">#}
+{#        <span></span>#}
+{#        <span></span>#}
+{#        <span></span>#}
+{#    </div>#}
+
+    <div class="share-interface">
+
+        <div class="share-button" id="fb-share-button">
+            <svg viewBox="0 0 12 12" preserveAspectRatio="xMidYMid meet">
+                <path class="svg-icon-path"
+                      d="M9.1,0.1V2H8C7.6,2,7.3,2.1,7.1,2.3
+                              C7,2.4,6.9,2.7,6.9,3
+                              v1.4H9L8.8,6.5H6.9V12H4.7
+                              V6.5H2.9V4.4h1.8V2.8
+                              c0-0.9,0.3-1.6,0.7-2.1
+                              C6,0.2,6.6,0,7.5,0
+                              C8.2,0,8.7,0,9.1,0.1z"></path>
+            </svg>
+        </div>
+
+        <a class="uros-twitter-share-button"
+           href="https://twitter.com/intent/tweet?url={{ 'https://krcadinac.com/space/neolib' }}&text=Uroš%20Krčadinac%20Interactive"
+           data-url="{{ 'https://krcadinac.com/space/neolib' }}"
+           data-size="large">
+
+            <div class="share-button" id="tw-share-button">
+                <svg viewBox="0 0 12 12" preserveAspectRatio="xMidYMid meet">
+                    <path class="svg-icon-path"
+                          d="M3.757,10.762c4.53,0,7.007-3.758,7.007-7.009c0-0.104,0-0.212-0.004-0.317
+	C11.24,3.09,11.66,2.652,11.99,2.158c-0.44,0.196-0.918,0.327-1.417,0.388c0.51-0.302,0.898-0.788,1.087-1.364
+	c-0.477,0.284-1.006,0.485-1.567,0.596C9.642,1.298,9.002,1,8.298,1c-1.36,0-2.466,1.104-2.466,2.464
+	c0,0.191,0.025,0.378,0.063,0.561c-2.045-0.1-3.861-1.084-5.077-2.574C0.605,1.816,0.486,2.239,0.486,2.69
+	c0,0.856,0.437,1.61,1.095,2.052C1.178,4.727,0.798,4.617,0.466,4.435c0,0.009,0,0.02,0,0.032c0,1.191,0.851,2.191,1.974,2.417
+	C2.235,6.941,2.019,6.971,1.792,6.971c-0.158,0-0.312-0.014-0.461-0.043c0.312,0.98,1.225,1.691,2.301,1.711
+	C2.787,9.301,1.726,9.695,0.572,9.695c-0.197,0-0.394-0.01-0.586-0.033C1.072,10.352,2.369,10.762,3.757,10.762
+                            "></path>
+                </svg>
+            </div>
+        </a>
+
+    </div>
+
+    <div class="scroll-interface">
+{#        <div class="scroll-right">skroluj nadole<br>scroll down</div>#}
+        <svg id="svg-scroll" width="20px" viewBox="0 0 20 20">
+            <line x1="10" y1="1" x2="10" y2="19"></line>
+            <line x1="10" y1="19" x2="16.4" y2="12.4"></line>
+            <line x1="10" y1="19" x2="3.6" y2="12.4"></line>
+        </svg>
+    </div>
+
+    <svg id="svgtext" viewBox="0 0 1000 1000">
+
+        <g id="whole-svg" class="begin-adjust">
+
+            <g id="txt">
+                <g id="kap">
+                    <path class="st1" d="M181.4,591.1l9.4,9.5h-35.7l6.5-6.8l-8.3-29.5c-1.4-4.6-4.5-8.6-9.1-8.6c-1.8,0-3.7,0.5-5.2,1.5l-1.8,1.5
+				v32.5l8.3,9.4h-36.6l8.3-9.4v-81.6l-8.3-5.5l28.3-9.4v62.3l25.5-20.8l-9.2-12.6h29.9l-18.2,12.5l-22.2,18
+				c3.7-1.5,7.4-2.3,10.9-2.3c10.8,0.6,18.5,8.5,21.7,19.2L181.4,591.1z"></path>
+                    <path class="st1" d="M236.5,600.6v-18.8c-4.8,13.5-14.6,19.2-25.1,19.2c-14.2,0-25.5-12.3-25.5-26.9c0-14.6,11.9-26.2,26.2-26.5
+				c10.5-0.3,13.9,2.9,16.9,5.8c-0.9-1.4-7.8-12.5-24.8-12.5h-10.9v-0.6c9.5-2.5,15.9-6.9,21.2-10.3c6.3-4,11.9-7.2,20.6-7.2
+				c14,0,21.4,7.4,21.4,21.1v47.2l8.2,9.4H236.5z M234.8,565.9c-3.5-11.4-13.1-18.6-21.1-16.2c-8.2,2.6-11.7,13.9-8.2,25.2
+				c3.7,11.9,13.1,19.1,21.2,16.6C234.8,588.9,238.5,577.2,234.8,565.9z M236.5,567.1v-32.6c0-7.5-1.2-10.3-4.6-10.3
+				c-7.7,0-13.7,10.5-15.2,18C228.7,546.8,234.2,558.2,236.5,567.1z"></path>
+                    <path class="st1" d="M273.5,619v-80.5l-8.3-5.5l28.3-9.2v9.2c5.4-6.3,12.6-10,21.9-10c17.2,0,31.2,17.7,31.2,39.2
+				c0,21.5-14,39.2-31.2,39.2c-9.2,0-16.5-3.7-21.9-10V619l8.3,9.4h-36.6L273.5,619z M293.5,589.1c3.7,4.8,8.6,8.8,13.9,8.8
+				c11.9,0,19.1-19.5,19.1-35.7c0-16.2-7.2-35.7-19.1-35.7c-5.2,0-10.2,4-13.9,8.8V589.1z"></path>
+                    <path class="st1" d="M392.1,523.5c15.1-5.2,24.2-10.3,24.6-19.1c0-11.4-12.2-18.9-25.4-18.9c-10,0-21.1,3.5-27.9,10.6
+				c1.7-0.8,3.4-1.2,5.4-1.2c6.3,0,11.4,5.1,11.4,11.4s-5.1,11.5-11.4,11.5c-6.3,0-11.5-5.2-11.5-11.5c0-1.8,0.5-3.5,1.1-5.1
+				c5.7-11.2,20-16.9,32.9-16.9c14.5,0,26.6,8.3,26.6,20.2v19.2h13.4v1.2H418v53.4c0,12.8,3.4,21.9,13.7,21.2v0.6
+				c-2,0.8-4,1.1-5.8,1.1c-19.4,0-27.9-11.2-27.9-30.2v-46h-6c-4.5,1.7-8.9,3.2-12.8,4.6v61.6l8.3,9.4H351l8.2-9.4v-47.9l-8.3-5.5
+				L392.1,523.5z"></path>
+                    <path class="st1" d="M457.5,547.7c9.7,0,12.8,2.9,15.9,5.8c-2.8-4-10-12.5-21.7-12.5h-11.5c5.8-10.6,20.2-18.2,34-18.2
+				c13.9,0,26.8,6,26.8,21.1v47.2l8.3,9.4h-28.3v-18.8c-4.8,13.5-14.6,19.2-25.1,19.2c-14.5,0-25.7-11.7-25.7-26.6
+				C430.1,559.1,442.6,547.7,457.5,547.7z M467.9,592c8.8,0,12.8-8.9,12.8-17.4c0-11.1-8-25.4-19.2-25.4c-8.2,0-12.8,8.3-12.8,17.1
+				C448.6,578.5,457.5,592,467.9,592z M480.9,567.1v-30.6c0-7.8-2.5-11.7-7.2-11.7c-7.5,0-11.8,8.5-13.7,16.5
+				C464.5,542.9,476.2,548.8,480.9,567.1z"></path>
+                    <path class="st1" d="M539.9,591.2l8.3,9.4h-36.6l8.3-9.4v-81.9l-8.3-5.5l28.3-9.4V591.2z"></path>
+                    <path class="st1" d="M559.6,591.2v-52.8l-8.3-5.5l28.3-9.2v67.6l8.3,9.4h-36.6L559.6,591.2z M557.7,506c0-6.3,5.1-11.4,11.4-11.4
+				c6.3,0,11.4,5.1,11.4,11.4s-5.1,11.4-11.4,11.4C562.8,517.4,557.7,512.3,557.7,506z"></path>
+                    <path class="st1"
+                          d="M650.5,573.7l-1.4,26.9h-59.1l37.2-75.7h-14.5l-19.7,25.7l1.2-26.9h53.7L611,599.4h19.7L650.5,573.7z"></path>
+                    <path class="st1" d="M682.7,547.7c9.7,0,12.8,2.9,15.9,5.8c-2.8-4-10-12.5-21.7-12.5h-11.5c5.8-10.6,20.2-18.2,34-18.2
+				c13.9,0,26.8,6,26.8,21.1v47.2l8.3,9.4h-28.3v-18.8c-4.8,13.5-14.6,19.2-25.1,19.2c-14.5,0-25.7-11.7-25.7-26.6
+				C655.3,559.1,667.8,547.7,682.7,547.7z M693,592c8.8,0,12.8-8.9,12.8-17.4c0-11.1-8-25.4-19.2-25.4c-8.2,0-12.8,8.3-12.8,17.1
+				C673.8,578.5,682.7,592,693,592z M706.1,567.1v-30.6c0-7.8-2.5-11.7-7.2-11.7c-7.5,0-11.9,8.5-13.7,16.5
+				C689.6,542.9,701.3,548.8,706.1,567.1z"></path>
+                    <path class="st1" d="M844.6,591.2l8.3,9.4h-36.6l8.3-9.4v-46c0-6.9-3.8-14-10.3-14c-3.4,0-6.9,2-10.2,6c0.8,2.5,1.2,5.1,1.2,7.8
+				v46.2l8.3,9.4H777l8.3-9.4v-46c0-7.5-4-14-9.8-14c-3.2,0-6.6,2-9.8,5.8v54.2l8.3,9.4h-36.6l8.3-9.4v-51.6l-8.3-5.5l28.3-10.5
+				v11.4c6.6-7.7,14.2-11.9,21.2-11.9c8,0,14.2,4.8,16.8,12.5c6.9-8.2,14.9-12.5,22.3-12.5c11.8,0,18.6,10.6,18.6,21.9V591.2z"></path>
+                    <path class="st1" d="M876.6,591.2c0,5.3-4.2,9.5-9.3,9.5c-5.2,0-9.5-4.2-9.5-9.5c0-5.2,4.3-9.3,9.5-9.3
+				C872.5,581.9,876.6,586,876.6,591.2z"></path>
+                </g>
+                <g id="nelib">
+                    <g id="ne">
+                        <path class="st1" d="M180.3,465.6l8,9.1h-35.4l8-9.1v-44.3c0-7.6-5.9-13.5-12.5-13.5c-4,0-8.2,1.9-11.7,5.8v52l8,9.1h-35.4l8-9.1
+				v-49.8l-8-5.4l27.4-10.1v11.4c7.6-7.7,15.9-11.9,23.8-11.9c11.7,0,19.8,9.4,19.8,21.3V465.6z"></path>
+                        <path class="st1" d="M191.3,437.7c0-21.1,17.1-38.1,38.1-38.1c12.9,0,25,6.5,32.1,17.7h-28.8c19.9,3.4,32.4,14.1,32.4,30.2
+				c0,14.1-12.5,27.9-35.1,27.9C208.1,475.5,191.3,458.7,191.3,437.7z M242.2,466.8c12.2,0,21-10.4,21-21.7
+				c0-16.9-20.2-27.8-41.8-27.8h-13.5C205.8,441.3,220.8,466.8,242.2,466.8z M208.1,416.1h30.8c-2.4-7.7-9.1-13.8-16.8-13.8
+				C213.7,402.3,209.1,407.4,208.1,416.1z"></path>
+                    </g>
+                    <g id="lib">
+                        <path class="st1" d="M846.5,465.6v-51l-8-5.4l27.4-8.9v65.3l8,9.1h-35.4L846.5,465.6z M844.7,383.3c0-6.1,4.9-11,11-11
+				s11,4.9,11,11s-4.9,11-11,11S844.7,389.4,844.7,383.3z"></path>
+                        <path class="st1" d="M379.6,465.6l8,9.1h-35.4l8-9.1v-79.1l-8-5.4l27.4-9.1V465.6z"></path>
+                        <path class="st1" d="M398.6,465.6v-51l-8-5.4l27.4-8.9v65.3l8,9.1h-35.4L398.6,465.6z M396.8,383.3c0-6.1,4.9-11,11-11
+				c6.1,0,11,4.9,11,11s-4.9,11-11,11C401.8,394.3,396.8,389.4,396.8,383.3z"></path>
+                        <path class="st1" d="M453.5,372.1v37.2c5.2-6.1,12.2-9.7,21.1-9.7c16.6,0,30.2,17.1,30.2,37.9c0,20.8-13.5,37.9-30.2,37.9
+				c-8.8,0-16.5-3.6-22.2-10.9l-10.3,10.1h-8v-88.2l-8-5.4L453.5,372.1z M466.9,472c11.4,0,18.4-18.9,18.4-34.5
+				c0-15.6-7-34.5-18.4-34.5c-5.1,0-9.8,3.9-13.4,8.5v52C457.1,468.2,461.8,472,466.9,472z"></path>
+                        <path class="st1" d="M513.1,437.7c0-21.1,17.1-38.1,38.1-38.1c12.9,0,25,6.5,32.1,17.7h-28.8c19.9,3.4,32.4,14.1,32.4,30.2
+				c0,14.1-12.5,27.9-35.1,27.9C529.9,475.5,513.1,458.7,513.1,437.7z M564.1,466.8c12.2,0,21-10.4,21-21.7
+				c0-16.9-20.2-27.8-41.8-27.8h-13.5C527.7,441.3,542.7,466.8,564.1,466.8z M529.9,416.1h30.8c-2.4-7.7-9.1-13.8-16.8-13.8
+				C535.5,402.3,530.9,407.4,529.9,416.1z"></path>
+                        <path class="st1" d="M641.2,419.6c-10.7,0.6-23.2,1.9-23.2,15.3v30.8l8,9.1h-35.4l8-9.1v-50.8l-8-5.4l27.4-9.1v26.8
+				c3.9-19.2,10.3-27.1,29-26.8L641.2,419.6z"></path>
+                        <path class="st1" d="M689.3,474.7v-18.1c-4.6,13.1-14.1,18.6-24.2,18.6c-13.7,0-24.7-11.9-24.7-26c0-14.1,11.4-25.3,25.3-25.6
+				c10.1-0.3,13.4,2.8,16.4,5.6c-0.9-1.3-7.6-12-23.9-12h-10.6v-0.6c9.2-2.4,15.3-6.7,20.5-10c6.1-3.9,11.4-7,19.9-7
+				c13.5,0,20.7,7.1,20.7,20.4v45.6l7.9,9.1H689.3z M687.6,441.1c-3.4-11-12.6-18-20.4-15.6c-7.9,2.5-11.3,13.4-7.9,24.4
+				c3.6,11.4,12.6,18.4,20.5,16.1C687.6,463.4,691.2,452.1,687.6,441.1z M689.3,442.3v-31.5c0-7.3-1.2-10-4.5-10
+				c-7.4,0-13.2,10.1-14.7,17.4C681.7,422.7,687,433.7,689.3,442.3z"></path>
+                        <path class="st1" d="M746,465.6l8,9.1h-35.4l8-9.1v-79.1l-8-5.4l27.4-9.1V465.6z"></path>
+                        <path class="st1" d="M827.9,465.6l8,9.1h-35.4l8-9.1v-44.3c0-7.6-5.9-13.5-12.5-13.5c-4,0-8.2,1.9-11.7,5.8v52l8,9.1H757l8-9.1
+				v-49.8l-8-5.4l27.4-10.1v11.4c7.6-7.7,15.9-11.9,23.8-11.9c11.7,0,19.8,9.4,19.8,21.3V465.6z"></path>
+                    </g>
+                </g>
+                <g id="o">
+                    <path id="o-text" d="M310.8,399.6c21.1,0,37.9,17.1,37.9,37.9c0,21-16.8,37.9-37.9,37.9c-21,0-37.8-16.9-37.8-37.9
+				C273,416.7,289.8,399.6,310.8,399.6z M320.3,472.2c8.2,0,12-7.7,12-18c0-24.8-17.8-51.3-31.1-51.3c-8.2,0-12,7.7-12,18
+				C289.2,445.7,307.1,472.2,320.3,472.2z"></path>
+                </g>
+            </g>
+
+            <g id="drop-cont">
+                <path id="drop" class="anim"></path>
+            </g>
+            <g id="o-cont" class="anim">
+                <circle id="o-main" cx="311" cy="437.5"></circle>
+                <path id="o-inside" class="o-inside-off"></path>
+                <circle id="o-center" cx="311" cy="437.5" r="2"></circle>
+            </g>
+
+        </g>
+
+    </svg>
+
+    <footer class="footer-content">
+
+        <div class="sr">
+            Interaktivni projekat <a href="https://krcadinac.com/rad" target="_blank">Uroša Krčadinca</a> i njegovih studenata, nastao u okviru serije generativnih radova <a href="https://krcadinac.com/rad/projekti/2020mutations" target="_blank"><em>2020 mutacije</em></a>. Beograd, 2020.
+        </div>
+
+        <div class="en">An interactive piece made by <a href="https://krcadinac.com" target="_blank">Uroš Krčadinac</a> and his students, created as part of the generative project <a href="https://krcadinac.com/work/projects/2020mutations" target="_blank"><em>2020 Mutations</em></a>. Belgrade, 2020.
+        </div>
+
+        <div class="xp">(In Serbian language, »<em>Neoliberalni</em>« means neoliberal, »<em>neliberalni</em>« means <a href="https://lareviewofbooks.org/article/neofeudalism-the-end-of-capitalism/" target="_blank">illiberal</a> capitalism. Two phrases differ only in the letter »o«.)
+        </div>
+
+    </footer>
+
+</main>
+
+</body>
+</html>
